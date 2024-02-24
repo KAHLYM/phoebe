@@ -25,7 +25,7 @@ jobs:
       - name: Build Angular application
         run: npm install && npm run build
       - name: Package output
-        run: find ./dist/phoebe/browser/ -printf "%P\n" | tar -czf ./_site/github-pages.tgz --no-recursion -C ./dist/phoebe/browser/ -T -
+        run: mkdir ./_site/ && find ./dist/phoebe/browser/ -printf "%P\n" | tar -czf ./_site/github-pages.tgz --no-recursion -C ./dist/phoebe/browser/ -T -
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
