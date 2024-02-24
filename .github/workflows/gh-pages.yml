@@ -23,7 +23,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build Angular application
-        run: npm run install && npm run build
+        run: npm install && npm run build
       - name: Package output
         run: find /dist/phoebe/browser/ -printf "%P\n" | tar -czf ./_site/github-pages.tgz --no-recursion -C /dist/phoebe/browser/ -T -
       - name: Upload artifact
