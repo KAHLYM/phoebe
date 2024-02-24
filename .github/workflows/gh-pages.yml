@@ -23,7 +23,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Build Angular application
-        run: npm install && npm run build
+        run: npm install && npm run build-gh-pages
       - name: Package output
         run: mkdir _site/ && cp -a dist/phoebe/browser/. _site/
       - name: Upload artifact
