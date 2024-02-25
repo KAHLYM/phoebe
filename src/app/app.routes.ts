@@ -5,4 +5,5 @@ import { ReasonComponent } from './reason/reason.component';
 export const routes: Routes = [
     { path: 'passcode', component: PasscodeComponent },
     { path: 'reason', component: ReasonComponent },
+    { path: '', redirectTo: '/passcode', pathMatch: 'full' },
 ];
