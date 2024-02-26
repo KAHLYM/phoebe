@@ -1,1 +1,3 @@
-<p>passcode works!</p>
+@for (passcode of PASSCODE; track passcode; let index = $index) {    
+    <app-passcode-input [index]="index" (keyup)="onKeyup($event)"/>
+}
