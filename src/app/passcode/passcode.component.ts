@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { PasscodeInputComponent } from '../passcode-input/passcode-input.component';
 import passcode from '../passcode.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-passcode',
@@ -14,6 +15,8 @@ export class PasscodeComponent {
   PASSCODE: string[] = Array.from(passcode["passcode"]);
 
   @ViewChildren(PasscodeInputComponent) children!: QueryList<PasscodeInputComponent>;
+
+  constructor(private router: Router) { }
 
   private focusNext(event: Event): void {
     let element: Element = (event.currentTarget as Element);
@@ -29,7 +32,7 @@ export class PasscodeComponent {
   public onKeyup(event: KeyboardEvent): void {
     this.focusNext(event);
     if (this.isAllTrue()) {
-      // passcode is valid
+      this.router.navigate(['/reason'])
     }
   }
 }
