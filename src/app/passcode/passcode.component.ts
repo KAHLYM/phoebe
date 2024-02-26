@@ -25,12 +25,28 @@ export class PasscodeComponent {
     }
   }
 
+  private focusPrevious(event: Event): void {
+    let element: Element = (event.currentTarget as Element);
+    if (element.previousElementSibling) {
+      (element.previousElementSibling as HTMLElement).getElementsByTagName("input")[0].focus();
+    }
+  }
+
   private isAllTrue(): boolean {
     return Array.from(this.children).every(child => child.isTrue());
   }
 
+  private isNumberCode(event: KeyboardEvent): boolean {
+    return ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"].includes(event.code);
+  }
+
   public onKeyup(event: KeyboardEvent): void {
-    this.focusNext(event);
+    if (event.code === "Tab") {
+      event.shiftKey ? this.focusPrevious(event) : this.focusNext(event);
+    } else if (this.isNumberCode(event)) {
+      this.focusNext(event);
+    }
+    
     if (this.isAllTrue()) {
       this.router.navigate(['/reason'])
     }
