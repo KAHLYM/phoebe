@@ -27,13 +27,6 @@ export class PasscodeInputComponent {
     return this.value === Array.from(passcode["passcode"])[this.index];
   }
 
-  public onInput(event: Event): void {
-    const ua = navigator.userAgent;
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
-      this
-    }
-  }
-
   public onKeydown(event: KeyboardEvent): void {
     if (this.isNumberCode(event)) {
       this.clear();
