@@ -24,9 +24,7 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Write passcode
         shell: bash
-        env:
-          PASSCODE: ${{secrets.PASSCODE}}
-        run: echo '$PASSCODE' >| src/app/passcode.json
+        run: echo '${{ secrets.PASSCODE }}' >| src/app/passcode.json
       - name: Build Angular application
         run: npm install && npm run build-gh-pages
       - name: Package output
