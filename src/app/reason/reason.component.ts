@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import reasons from '../reasons.json';
 import { DOCUMENT } from '@angular/common';
+import { PasscodeService } from '../passcode.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reason',
@@ -13,11 +15,15 @@ export class ReasonComponent {
 
   reason?: string;
 
-  constructor(@Inject(DOCUMENT) private _document: HTMLDocument) {
+  constructor(private router: Router, @Inject(DOCUMENT) private document: HTMLDocument, private passcodeService: PasscodeService) {
+    if (!this.passcodeService.isTrue) {
+      this.router.navigate(['/passcode'])
+    }
+
     const REASONS: string[] = reasons["reasons"];
     this.reason = REASONS[this.getIndex(REASONS.length)];
-    this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
-    this._document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
+    this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
+    this.document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
   }
 
   ngAfterViewInit() {
