@@ -31,6 +31,8 @@ jobs:
         run: npm install && npm run build-gh-pages
       - name: Package output
         run: mkdir _site/ && cp -a dist/phoebe/browser/. _site/
+      - name: Move 404.html
+        run: mv src/404.html _site/404.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
