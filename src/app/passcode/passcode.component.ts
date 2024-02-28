@@ -3,6 +3,7 @@ import { Component, Inject, QueryList, ViewChildren } from '@angular/core';
 import { PasscodeInputComponent } from '../passcode-input/passcode-input.component';
 import passcode from '../passcode.json';
 import { Router } from '@angular/router';
+import { PasscodeService } from '../passcode.service';
 
 @Component({
   selector: 'app-passcode',
@@ -16,9 +17,9 @@ export class PasscodeComponent {
 
   @ViewChildren(PasscodeInputComponent) children!: QueryList<PasscodeInputComponent>;
 
-  constructor(private router: Router, @Inject(DOCUMENT) private _document: HTMLDocument) {
-    this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-empty.svg');
-    this._document.getElementById('appThemeColor')?.setAttribute('content', '#F5F5F5');
+  constructor(private router: Router, @Inject(DOCUMENT) private document: HTMLDocument, private passcodeService: PasscodeService) {
+    this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-empty.svg');
+    this.document.getElementById('appThemeColor')?.setAttribute('content', '#F5F5F5');
   }
 
   private focusNext(event: Event): void {
@@ -55,6 +56,7 @@ export class PasscodeComponent {
     }
 
     if (this.isAllTrue()) {
+      this.passcodeService.isTrue = true;
       this.router.navigate(['/reason'])
     }
   }
