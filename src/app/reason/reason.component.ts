@@ -17,6 +17,14 @@ export class ReasonComponent {
     this.reason = REASONS[this.getIndex(REASONS.length)];
   }
 
+  ngAfterViewInit() {
+    document.querySelector('body')?.classList.add('reason');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('body')?.classList.remove('reason');
+  }
+
   // Adapted from https://stackoverflow.com/a/47593316
   private cyrb128(seed: string): number[] {
     let h1 = 1779033703, h2 = 3144134277,
