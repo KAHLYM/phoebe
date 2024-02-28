@@ -39,8 +39,12 @@ export class PasscodeComponent {
     return Array.from(this.children).every(child => child.isTrue());
   }
 
+  private isMobile(): boolean {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
+  }
+
   private isNumberCode(event: KeyboardEvent): boolean {
-    return ["Digit0", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9"].includes(event.code);
+    return /^(Digit|Numpad)?\d$/.test(this.isMobile() ? event.key : event.code);
   }
 
   public onKeyup(event: KeyboardEvent): void {

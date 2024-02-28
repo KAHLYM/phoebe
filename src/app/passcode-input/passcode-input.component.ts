@@ -19,8 +19,12 @@ export class PasscodeInputComponent {
     this.elementRef.nativeElement.value = "";
   }
 
+  private isMobile(): boolean {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(navigator.userAgent);
+  }
+
   private isNumberCode(event: KeyboardEvent): boolean {
-    return /^(Digit|Numpad)\d$/.test(event.code);
+    return /^(Digit|Numpad)?\d$/.test(this.isMobile() ? event.key : event.code);
   }
 
   public isTrue(): boolean {
@@ -35,7 +39,7 @@ export class PasscodeInputComponent {
 
   public onKeyup(event: KeyboardEvent): void {
     if (this.isNumberCode(event)) {
-      this.value = (<HTMLTextAreaElement>event.target).value;
+      this.value = this.isMobile() ? event.key : (<HTMLTextAreaElement>event.target).value;
       this.elementRef.nativeElement.value = this.value;
     }
   }
