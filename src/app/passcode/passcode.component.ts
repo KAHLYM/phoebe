@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Component, Inject, QueryList, ViewChildren } from '@angular/core';
 import { PasscodeInputComponent } from '../passcode-input/passcode-input.component';
 import passcode from '../passcode.json';
 import { Router } from '@angular/router';
@@ -16,7 +16,10 @@ export class PasscodeComponent {
 
   @ViewChildren(PasscodeInputComponent) children!: QueryList<PasscodeInputComponent>;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, @Inject(DOCUMENT) private _document: HTMLDocument) {
+    this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-empty.svg');
+    this._document.getElementById('appThemeColor')?.setAttribute('content', '#F5F5F5');
+  }
 
   private focusNext(event: Event): void {
     let element: Element = (event.currentTarget as Element);
@@ -46,7 +49,7 @@ export class PasscodeComponent {
     } else if (this.isNumberCode(event)) {
       this.focusNext(event);
     }
-    
+
     if (this.isAllTrue()) {
       this.router.navigate(['/reason'])
     }
