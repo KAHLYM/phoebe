@@ -17,6 +17,7 @@ export class ReasonComponent {
     const REASONS: string[] = reasons["reasons"];
     this.reason = REASONS[this.getIndex(REASONS.length)];
     this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
+    this._document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
   }
 
   ngAfterViewInit() {

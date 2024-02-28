@@ -18,6 +18,7 @@ export class PasscodeComponent {
 
   constructor(private router: Router, @Inject(DOCUMENT) private _document: HTMLDocument) {
     this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-empty.svg');
+    this._document.getElementById('appThemeColor')?.setAttribute('content', '#F5F5F5');
   }
 
   private focusNext(event: Event): void {
