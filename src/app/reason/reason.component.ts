@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import reasons from '../reasons.json';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-reason',
@@ -12,9 +13,10 @@ export class ReasonComponent {
 
   reason?: string;
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private _document: HTMLDocument) {
     const REASONS: string[] = reasons["reasons"];
     this.reason = REASONS[this.getIndex(REASONS.length)];
+    this._document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
   }
 
   ngAfterViewInit() {
