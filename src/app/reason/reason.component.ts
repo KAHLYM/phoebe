@@ -69,7 +69,7 @@ export class ReasonComponent {
 
   private getIndex(entries: number): number {
     const date: Date = new Date();
-    const seed = this.cyrb128(`${date.getUTCFullYear()}${date.getUTCMonth()}${date.getUTCDay()}`);
+    const seed = this.cyrb128(`${date.getFullYear()}${date.getMonth()}${date.getDay()}`);
     const rand = this.sfc32(seed[0], seed[1], seed[2], seed[3]);
     return Math.floor(entries * rand());
   }
