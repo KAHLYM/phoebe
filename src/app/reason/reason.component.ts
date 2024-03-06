@@ -24,6 +24,16 @@ export class ReasonComponent {
     this.reason = REASONS[this.getIndex(REASONS.length)];
     this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
     this.document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
+
+    const date: Date = new Date();
+    const MMDD = `${date.getMonth() + 1}`.padStart(2, "0") + `${date.getDate()}`.padStart(2, "0");
+
+    const OVERRIDES: { date: string, reason: string }[] = reasons["overrides"];
+    OVERRIDES.forEach(override => {
+      if (override.date === MMDD) {
+        this.reason = override.reason;
+      }
+    });  
   }
 
   ngAfterViewInit() {
