@@ -1,16 +1,30 @@
+p {
+    margin: 0em;
+}
+
 #pretext {
     color: #F48FB1;
     font-family: "Satisfy", cursive;
     font-size: 1em;
     text-align: center;
+    padding: 0em 4em;
 }
 
-#text {
+#reason {
     color: #E91E63;
     font-family: "Satisfy", cursive;
     font-size: 4em;
     font-style: normal;
     font-weight: 400;
     text-align: center;
-    padding: 0 1em;
+    padding: 1em 1em;
+}
+
+#footer {
+    color: #F48FB1;
+    font-family: "Satisfy", cursive;
+    font-size: 2em;
+    font-style: normal;
+    text-align: center;
+    padding: 0em 2em;
 }

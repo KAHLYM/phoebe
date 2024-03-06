@@ -7,5 +7,12 @@
         "five",
         "six",
         "seven"
+    ],
+    "overrides": [
+        {
+            "date": "0306",
+            "reason": "March 5th override",
+            "footer": "this is the footer"
+        }
     ]
 }
