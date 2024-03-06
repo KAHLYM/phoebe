@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class ReasonComponent {
 
   reason?: string;
+  footer?: string;
 
   constructor(private router: Router, @Inject(DOCUMENT) private document: HTMLDocument, private passcodeService: PasscodeService) {
     if (!this.passcodeService.isTrue) {
@@ -24,6 +25,17 @@ export class ReasonComponent {
     this.reason = REASONS[this.getIndex(REASONS.length)];
     this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
     this.document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
+
+    const date: Date = new Date();
+    const MMDD = `${date.getMonth() + 1}`.padStart(2, "0") + `${date.getDate()}`.padStart(2, "0");
+
+    const OVERRIDES: { date: string, reason: string, footer: string }[] = reasons["overrides"];
+    OVERRIDES.forEach(override => {
+      if (override.date === MMDD) {
+        this.reason = override.reason;
+        this.footer = override.footer;
+      }
+    });  
   }
 
   ngAfterViewInit() {
