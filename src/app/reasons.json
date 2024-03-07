@@ -10,8 +10,11 @@
     ],
     "overrides": [
         {
-            "date": "0306",
-            "reason": "March 5th override",
+            "date": "0307",
+            "reasons": [
+                "March 7th override",
+                "March 7th override again"
+            ],
             "footer": "this is the footer"
         }
     ]
