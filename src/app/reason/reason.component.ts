@@ -21,18 +21,17 @@ export class ReasonComponent {
       this.router.navigate(['/passcode'])
     }
 
+    const DATE: Date = new Date();
+
     const REASONS: string[] = reasons["reasons"];
-    this.reason = REASONS[this.getIndex(REASONS.length)];
+    this.reason = REASONS[this.getIndex(`${DATE.getFullYear()}${DATE.getMonth()}${DATE.getDay()}`, REASONS.length)];
     this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
     this.document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
 
-    const date: Date = new Date();
-    const MMDD = `${date.getMonth() + 1}`.padStart(2, "0") + `${date.getDate()}`.padStart(2, "0");
-
-    const OVERRIDES: { date: string, reason: string, footer: string }[] = reasons["overrides"];
+    const OVERRIDES: { date: string, reasons: string[], footer: string }[] = reasons["overrides"];
     OVERRIDES.forEach(override => {
-      if (override.date === MMDD) {
-        this.reason = override.reason;
+      if (override.date === `${DATE.getMonth() + 1}`.padStart(2, "0") + `${DATE.getDate()}`.padStart(2, "0")) {
+        this.reason = override.reasons[this.getIndex(`${DATE.getHours()}`, override.reasons.length)];
         this.footer = override.footer;
       }
     });  
@@ -79,10 +78,9 @@ export class ReasonComponent {
     }
   }
 
-  private getIndex(entries: number): number {
-    const date: Date = new Date();
-    const seed = this.cyrb128(`${date.getFullYear()}${date.getMonth()}${date.getDay()}`);
-    const rand = this.sfc32(seed[0], seed[1], seed[2], seed[3]);
+  private getIndex(seed: string, entries: number): number {
+    const seeded = this.cyrb128(seed);
+    const rand = this.sfc32(seeded[0], seeded[1], seeded[2], seeded[3]);
     return Math.floor(entries * rand());
   }
 }
