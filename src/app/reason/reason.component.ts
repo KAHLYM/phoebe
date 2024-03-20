@@ -24,7 +24,7 @@ export class ReasonComponent {
     const DATE: Date = new Date();
 
     const REASONS: string[] = reasons["reasons"];
-    this.reason = REASONS[this.getIndex(`${DATE.getFullYear()}${DATE.getMonth()}${DATE.getDay()}`, REASONS.length)];
+    this.reason = REASONS[this.getIndex(`${DATE.getFullYear()}${DATE.getMonth()}${DATE.getDate()}`, REASONS.length)];
     this.document.getElementById('appIcon')?.setAttribute('href', 'assets/heart-full.svg');
     this.document.getElementById('appThemeColor')?.setAttribute('content', '#E91E63');
 
