@@ -15,7 +15,7 @@
                 "March 7th override",
                 "March 7th override again"
             ],
-            "footer": "this is the footer"
+            "static": "this is the static"
         }
     ]
 }
