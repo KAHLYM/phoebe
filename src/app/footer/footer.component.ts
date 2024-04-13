@@ -9,5 +9,5 @@ import update from './update.json';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  text?: string = update["datetime"];
+  text?: string = update["timestamp"];
 }
