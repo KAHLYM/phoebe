@@ -28,8 +28,7 @@ jobs:
       - name: Write reasons
         run: echo '${{ secrets.REASONS }}' >| src/app/reasons.json
       - name: Write update
-        run: > 
-          echo '{' '\"timestamp\": \"$(date %B %-d %Y)\"' '}' >| src/app/footer/update.json
+        run: src/app/footer/update.sh
       - name: Build Angular application
         run: npm install && npm run build-gh-pages
       - name: Package output
