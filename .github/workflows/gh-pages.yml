@@ -28,7 +28,7 @@ jobs:
       - name: Write reasons
         run: echo '${{ secrets.REASONS }}' >| src/app/reasons.json
       - name: Write update
-        run: src/app/footer/update.sh
+        run: python src/app/footer/update.py
       - name: Build Angular application
         run: npm install && npm run build-gh-pages
       - name: Package output

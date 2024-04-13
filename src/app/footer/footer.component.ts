@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import update from './update.json';
+import timestamp from './update';
 
 @Component({
   selector: 'app-footer',
@@ -9,5 +9,5 @@ import update from './update.json';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  text?: string = update["timestamp"];
+  text?: string = timestamp;
 }

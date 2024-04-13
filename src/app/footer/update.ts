@@ -1,0 +1,1 @@
+const timestamp = "January 1, 1970"; export default timestamp;
